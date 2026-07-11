@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ftguide"
+version = "0.1.0"
+description = "Hands-on finetuning guide for small models with Unsloth"
+requires-python = ">=3.11"
+dependencies = [
+    "datasets>=4.0",
+    "transformers>=4.45",
+    "trl>=0.14",
+    "peft>=0.13",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+unsloth = ["unsloth"]
+dedup = ["datasketch>=1.6"]
+eval = ["rouge-score"]
+dev = ["jupyter", "ipywidgets", "ruff"]
+all = ["unsloth", "datasketch>=1.6", "rouge-score", "jupyter", "ipywidgets"]
+
+[project.scripts]
+ftguide-train = "ftguide.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
